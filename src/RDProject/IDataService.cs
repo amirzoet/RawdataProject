@@ -9,5 +9,6 @@ namespace RDProject
     public interface IDataService
     {
         IList<Post> GetPosts();
+        IList<User> GetUsers();
     }
 }

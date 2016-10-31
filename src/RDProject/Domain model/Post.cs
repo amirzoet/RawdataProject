@@ -9,7 +9,7 @@ namespace RDProject.Domain_model
     {
         public int id { get; set; }
         public DateTime creationdate { get; set; }
-        public String body { get; set; }
+        public string body { get; set; }
         public int score { get; set; }
         public int userid { get; set; }
     }

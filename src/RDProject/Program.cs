@@ -12,10 +12,12 @@ namespace RDProject
             using(var db = new DatabaseContext())
             {
                 var posts = db.posts;
+                var users = db.users.Where(u =>u.age>40);
 
-                foreach (var post in posts)
+                
+                foreach (var user in users)
                 {
-                    Console.WriteLine($"{post.id} {post.score}");
+                    Console.WriteLine($"{user.name} {user.age}");
                 }
             }
         }

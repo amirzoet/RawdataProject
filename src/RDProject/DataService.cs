@@ -16,5 +16,14 @@ namespace RDProject
             }
         
         }
+
+        public IList<User> GetUsers()
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.users.ToList();
+            }
+
+        }
     }
 }
