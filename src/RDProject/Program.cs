@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using RDProject.Domain_model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,17 +11,16 @@ namespace RDProject
     {
         public static void Main(string[] args)
         {
-            using(var db = new DatabaseContext())
-            {
-                var posts = db.posts;
-                var users = db.users.Where(u =>u.age>40);
+            DataService ds = new DataService();
+            var posts = ds.GetPosts(p => p.score>10, 1, 1);
+            var users = ds.GetUsers(u => true, 1, 1);
+            var search = ds.Search("java banana hashmap", 1, 1, 10);
 
-                
-                foreach (var user in users)
-                {
-                    Console.WriteLine($"{user.name} {user.age}");
-                }
+            foreach (var item in search.Take(20))
+            {
+                Console.WriteLine($"{item.id}, {item.ranking}");
             }
         }
     }
 }
+  

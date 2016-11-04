@@ -8,7 +8,8 @@ namespace RDProject
 {
     public interface IDataService
     {
-        IList<Post> GetPosts();
-        IList<User> GetUsers();
+        IList<Post> GetPosts(Func<Post, bool> predicate, int page, int pagesize);
+        IList<User> GetUsers(Func<User, bool> predicate, int page, int pagesize);
+        IList<SearchResult> Search(string search, int userid, int page, int pagesize);
     }
 }
