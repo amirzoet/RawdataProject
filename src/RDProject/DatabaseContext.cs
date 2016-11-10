@@ -11,8 +11,9 @@ namespace RDProject
     {
         public DbSet<Post> posts { get; set; }
         public DbSet<User> users { get; set; }
-        public DbSet<SearchResult> search { get; set; }
-
+        public DbSet<SearchId> sids { get; set; }
+        //public DbSet<SearchResult> search { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,7 +38,8 @@ namespace RDProject
             modelBuilder.Entity<User>().Property(c => c.location).HasColumnName("location");
             modelBuilder.Entity<User>().Property(c => c.age).HasColumnName("age");
 
-            modelBuilder.Entity<SearchResult>().Property(c => c.id).HasColumnName("questionid");
+            //modelBuilder.Entity<SearchResult>().Property(c => c.id).HasColumnName("questionid");
+
 
             base.OnModelCreating(modelBuilder);
         }
