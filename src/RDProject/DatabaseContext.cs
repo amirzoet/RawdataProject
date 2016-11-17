@@ -9,11 +9,14 @@ namespace RDProject
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Post> posts { get; set; }
+        //public DbSet<Post> posts { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<SearchId> sids { get; set; }
-        //public DbSet<SearchResult> search { get; set; }
-        
+        public DbSet<Comment> comments { get; set; }
+        public DbSet<Answer> answers { get; set; }
+        public DbSet<Search> search { get; set; }
+        public DbSet<Mark> mark { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,12 +27,12 @@ namespace RDProject
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Post>().ToTable("post");
-            modelBuilder.Entity<Post>().Property(c => c.id).HasColumnName("id");
-            modelBuilder.Entity<Post>().Property(c => c.creationdate).HasColumnName("creationdate");
-            modelBuilder.Entity<Post>().Property(c => c.body).HasColumnName("body");
-            modelBuilder.Entity<Post>().Property(c => c.score).HasColumnName("score");
-            modelBuilder.Entity<Post>().Property(c => c.userid).HasColumnName("ownerid");
+            //modelBuilder.Entity<Post>().ToTable("post");
+            //modelBuilder.Entity<Post>().Property(c => c.id).HasColumnName("id");
+            //modelBuilder.Entity<Post>().Property(c => c.creationdate).HasColumnName("creationdate");
+            //modelBuilder.Entity<Post>().Property(c => c.body).HasColumnName("body");
+            //modelBuilder.Entity<Post>().Property(c => c.score).HasColumnName("score");
+            //modelBuilder.Entity<Post>().Property(c => c.userid).HasColumnName("ownerid");
 
             modelBuilder.Entity<User>().ToTable("user");
             modelBuilder.Entity<User>().Property(c => c.id).HasColumnName("id");
@@ -38,7 +41,11 @@ namespace RDProject
             modelBuilder.Entity<User>().Property(c => c.location).HasColumnName("location");
             modelBuilder.Entity<User>().Property(c => c.age).HasColumnName("age");
 
-            //modelBuilder.Entity<SearchResult>().Property(c => c.id).HasColumnName("questionid");
+            modelBuilder.Entity<Comment>().Property(c => c.username).HasColumnName("displayname");
+            modelBuilder.Entity<Answer>().Property(c => c.username).HasColumnName("displayname");
+
+            modelBuilder.Entity<Mark>().HasKey(t => new {t.postid, t.userid });
+
 
 
             base.OnModelCreating(modelBuilder);

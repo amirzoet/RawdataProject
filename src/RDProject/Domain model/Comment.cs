@@ -5,8 +5,12 @@ using System.Threading.Tasks;
 
 namespace RDProject.Domain_model
 {
-    public class Comment : Post
+    public class Comment
     {
-        public int parentid { get; set; }
+        public int id { get; set; }
+        public DateTime creationdate { get; set; }
+        public string body { get; set; }
+        public int score { get; set; }
+        public string username { get; set; }
     }
 }

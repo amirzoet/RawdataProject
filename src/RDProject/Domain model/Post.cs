@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RDProject.Domain_model
 {
-    public class Post
+    public abstract class Post
     {
         public int id { get; set; }
         public DateTime creationdate { get; set; }

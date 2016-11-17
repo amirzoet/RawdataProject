@@ -6,6 +6,7 @@
 
   "dependencies": {
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
+    "Microsoft.AspNetCore.Mvc.Abstractions": "1.0.1",
     "Microsoft.EntityFrameworkCore": "1.0.1",
     "Microsoft.EntityFrameworkCore.Relational": "1.0.1",
     "Microsoft.NETCore.App": {

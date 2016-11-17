@@ -9,5 +9,6 @@ namespace RDProject.Domain_model
     {
         public string title { get; set; }
         public int acceptedanswerid { get; set; }
+        public string username { get; set; }
     }
 }

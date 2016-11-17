@@ -6,26 +6,77 @@ using Microsoft.EntityFrameworkCore;
 using RDProject.Domain_model;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace RDProject
 {
     public class DataService : IDataService
     {
-        public IList<Post> GetPosts(Func<Post, bool> predicate, int page, int pagesize)
+        public IList<Answer> GetAnswersToQuestion(int questionid)
         {
             using (var db = new DatabaseContext())
             {
-                return db.posts.Where(predicate).ToList();
+                return db.Set<Answer>().FromSql(
+                        "call getanswersforquestion({0})",
+                        new object[] { questionid }).ToList();
             }
         }
 
-        public IList<User> GetUsers(Func<User, bool> predicate, int page, int pagesize)
+        public IList<Comment> GetCommentsToPost(int postid)
         {
             using (var db = new DatabaseContext())
             {
-                return db.users.Where(predicate).ToList();
+                return db.Set<Comment>().FromSql(
+                        "call getcommentsforpost({0})",
+                        new object[] { postid }).ToList();
             }
         }
+
+
+        public IList<Mark> GetMarks(int userid, int page, int pagesize)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Set<Mark>().FromSql(
+                        "call getmarkedposts({0},{1},{2})",
+                        new object[] { userid, page, pagesize }).ToList();
+            }
+        }
+
+        public IList<Search> GetSearchHistory(int userid, int page, int pagesize)
+        {
+            using (var db = new DatabaseContext())
+            {
+                return db.Set<Search>().FromSql(
+                        "call getsearchhistory({0},{1},{2})",
+                        new object[] { userid, page, pagesize }).ToList();
+            }
+        }
+
+        //public IList<Post> GetPosts(Func<Post, bool> predicate, int page, int pagesize)
+        //{
+        //    using (var db = new DatabaseContext())
+        //    {
+        //        return db.posts.Where(predicate).ToList();
+        //    }
+        //}
+
+        public User GetUser(int id)
+        {
+            using (var db = new DatabaseContext()) {
+                return db.Set<User>().FromSql(
+                        "call getuser({0})",
+                        new object[] { id }).FirstOrDefault();
+            }
+        }
+
+        //public IList<User> GetUsers(Func<User, bool> predicate, int page, int pagesize)
+        //{
+        //    using (var db = new DatabaseContext())
+        //    {
+        //        return db.users.Where(predicate).ToList();
+        //    }
+        //}
 
         public IList<SearchResult> Search(string search, int userid, int page, int pagesize)
         {
