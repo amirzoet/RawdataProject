@@ -16,12 +16,13 @@ namespace RDProject
             //var search = ds.Search("java banana hashmap", 1, 1, 10);
             var comments = ds.GetCommentsToPost(19);
             var answers = ds.GetAnswersToQuestion(19);
-            var searchhistory = ds.GetSearchHistory(1, 1, 10);
+            var searchhistory = ds.GetSearchHistory(1, 1, 10);           
+            Console.WriteLine(ds.Mark(1, 19, "useful mark"));
+            Console.WriteLine(ds.DeleteMark(1,19));
             var markhistory = ds.GetMarks(1, 1, 10);
-
             foreach (var item in markhistory)
             {
-                Console.WriteLine($" {item.title},{item.mark}");
+                Console.WriteLine($" {item.postid},{item.mark}");
             }
 
 

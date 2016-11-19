@@ -14,6 +14,7 @@ namespace RDProject
         IList<Comment> GetCommentsToPost(int postid);
         IList<Search> GetSearchHistory(int userid, int page, int pagesize);
         IList<Mark> GetMarks(int userid, int page, int pagesize);
-
+        Boolean Mark(int userid, int postid, string text);
+        Boolean DeleteMark(int userid, int postid);
     }
 }

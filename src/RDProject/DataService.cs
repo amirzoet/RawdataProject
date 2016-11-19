@@ -32,6 +32,37 @@ namespace RDProject
             }
         }
 
+        public Boolean Mark(int userid, int postid, string text)
+        {
+            using(var db = new DatabaseContext())
+            {
+                try
+                {
+                    db.Database.ExecuteSqlCommand("call markpost({0},{1},{2})", text, postid, userid);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }   
+            }
+        }
+
+        public Boolean DeleteMark(int userid, int postid)
+        {
+            using (var db = new DatabaseContext())
+            {
+                try
+                {
+                    db.Database.ExecuteSqlCommand("call deletemark({0},{1})", userid,postid);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
 
         public IList<Mark> GetMarks(int userid, int page, int pagesize)
         {
@@ -127,5 +158,6 @@ namespace RDProject
                 return result;
             }
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace RDProject.Domain_model
     {
         public int postid { get; set; }
         public int userid { get; set; }
-        public string title { get; set; }
         public string mark { get; set; }
+        public string title { get; set; }
     }
 }
