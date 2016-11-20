@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
@@ -14,12 +15,12 @@ namespace WebApplication.Controllers
         {
         }
 
-        [HttpGet("{id}", Name = Config.UserRoute)]
+        [HttpGet("{id:int}", Name = Config.UserRoute)]
         public IActionResult Get(int id)
         {
             var user = DataService.GetUser(id);
             if (user == null) return NotFound();
-            return Ok(new { user.name, user.creationdate, user.location, user.age });
+            return Ok(user);
         }
     }
 }
