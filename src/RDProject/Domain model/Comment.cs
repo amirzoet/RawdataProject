@@ -11,6 +11,8 @@ namespace RDProject.Domain_model
         public DateTime creationdate { get; set; }
         public string body { get; set; }
         public int score { get; set; }
-        public string username { get; set; }
+        public int userid { get; set; }
+        public int postid { get; set; }
+        public int parentid { get; set; }
     }
 }

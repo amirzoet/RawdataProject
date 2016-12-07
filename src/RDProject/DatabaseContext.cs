@@ -27,22 +27,11 @@ namespace RDProject
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Post>().ToTable("post");
-            //modelBuilder.Entity<Post>().Property(c => c.id).HasColumnName("id");
-            //modelBuilder.Entity<Post>().Property(c => c.creationdate).HasColumnName("creationdate");
-            //modelBuilder.Entity<Post>().Property(c => c.body).HasColumnName("body");
-            //modelBuilder.Entity<Post>().Property(c => c.score).HasColumnName("score");
-            //modelBuilder.Entity<Post>().Property(c => c.userid).HasColumnName("ownerid");
-
-            modelBuilder.Entity<User>().ToTable("user");
-            modelBuilder.Entity<User>().Property(c => c.id).HasColumnName("id");
-            modelBuilder.Entity<User>().Property(c => c.creationdate).HasColumnName("creationdate");
+        
             modelBuilder.Entity<User>().Property(c => c.name).HasColumnName("displayname");
-            modelBuilder.Entity<User>().Property(c => c.location).HasColumnName("location");
-            modelBuilder.Entity<User>().Property(c => c.age).HasColumnName("age");
-
-            modelBuilder.Entity<Comment>().Property(c => c.username).HasColumnName("displayname");
-            modelBuilder.Entity<Answer>().Property(c => c.username).HasColumnName("displayname");
+          
+            modelBuilder.Entity<Comment>().Property(c => c.userid).HasColumnName("ownerid");
+            modelBuilder.Entity<Answer>().Property(c => c.userid).HasColumnName("ownerid");
 
             modelBuilder.Entity<Mark>().HasKey(t => new {t.postid, t.userid });
 

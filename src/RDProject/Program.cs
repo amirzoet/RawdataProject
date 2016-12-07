@@ -13,17 +13,21 @@ namespace RDProject
         {
             DataService ds = new DataService();
             var user = ds.GetUser(1);
-            //var search = ds.Search("java banana hashmap", 1, 1, 10);
-            var comments = ds.GetCommentsToPost(19);
-            var answers = ds.GetAnswersToQuestion(19);
-            var searchhistory = ds.GetSearchHistory(1, 1, 10);           
-            Console.WriteLine(ds.Mark(1, 19, "useful mark"));
-            Console.WriteLine(ds.DeleteMark(1,19));
-            var markhistory = ds.GetMarks(1, 1, 10);
-            foreach (var item in markhistory)
+            var comments = ds.GetCommentsToPost(3);
+
+            foreach (var item in comments)
             {
-                Console.WriteLine($" {item.postid},{item.mark}");
+                Console.WriteLine($"{item.parentid} " );
             }
+            //var answers = ds.GetAnswersToQuestion(19);
+            //var searchhistory = ds.GetSearchHistory(1, 1, 10);           
+            //Console.WriteLine(ds.Mark(1, 19, "useful mark"));
+            //Console.WriteLine(ds.DeleteMark(1,19));
+            //var markhistory = ds.GetMarks(1, 1, 10);
+            //foreach (var item in markhistory)
+            //{
+            //    Console.WriteLine($" {item.postid},{item.mark}");
+            //}
 
 
             //Console.WriteLine("id, score, username, tags, title");
