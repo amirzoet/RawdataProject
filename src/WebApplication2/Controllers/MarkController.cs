@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RDProject;
-using WebApplication.Models;
+using WebApplication2;
 
-namespace WebApplication.Controllers
+namespace WebApplication2.Controllers
 {
     [Route("api/myusers/{userid}/marks")]
     public class MarkController : BaseController
@@ -14,7 +14,7 @@ namespace WebApplication.Controllers
         public MarkController(IDataService dataService) : base(dataService)
         {
         }
-        [HttpGet("{page}",Name =Config.MarkRoute)]
+        [HttpGet("{page}")]
         public IActionResult Get(int userid, int page)
         {
             var marks = DataService.GetMarks(userid, page, Config.DefaultPageSize);
