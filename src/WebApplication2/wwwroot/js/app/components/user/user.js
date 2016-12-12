@@ -1,11 +1,20 @@
-﻿define(['knockout', 'dataservice'],
-    function (ko, ds) {
-        return function () {
+﻿define(['knockout', 'dataservice', 'postman'],
+    function (ko, ds, postman) {
+        return function (url) {
             var user = ko.observable();
 
-            ds.getUser(1, function (data) {
-                user(data);
+            var getUser = function (url) {
+                ds.getUser(url, function (data) {
+                    user(data);
+                });
+            }
+            getUser("api/users/1");
+
+            postman.subscribe("showuser", function (url) {
+                getUser(url);
             });
+
+
 
             return {
                 user: user,

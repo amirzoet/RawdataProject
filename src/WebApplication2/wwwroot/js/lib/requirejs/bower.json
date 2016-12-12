@@ -1,17 +1,10 @@
 {
-  "name": "requirejs",
-  "version": "2.3.2",
-  "ignore": [],
-  "homepage": "http://requirejs.org",
-  "authors": [
-    "jrburke.com"
-  ],
-  "description": "A file and module loader for JavaScript",
-  "main": "require.js",
-  "keywords": [
-    "AMD"
-  ],
-  "license": [
-    "MIT"
-  ]
+	"name": "asp.net",
+	"private": true,
+  "dependencies": {
+    "jquery": "3.1.1",
+    "knockout": "3.4.1",
+    "requirejs": "2.3.2",
+    "requirejs-text": "2.0.15"
+  }
 }

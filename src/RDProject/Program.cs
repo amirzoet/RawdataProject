@@ -14,7 +14,6 @@ namespace RDProject
             DataService ds = new DataService();
             var user = ds.GetUser(1);
             var comments = ds.GetCommentsToPost(3);
-
             foreach (var item in comments)
             {
                 Console.WriteLine($"{item.parentid} " );

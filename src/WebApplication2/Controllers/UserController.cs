@@ -15,12 +15,14 @@ namespace WebApplication2.Controllers
         {
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name =Config.UserRoute)]
         public IActionResult Get(int id)
         {
             var user = DataService.GetUser(id);
             if (user == null) return NotFound();
-            return Ok(user);
+            
+
+            return Ok(ModelFactory.Map(user, Url));
         }
     }
 }
