@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace RDProject.Domain_model
+namespace WebApplication2.Models
 {
-    public class Question
+    public class CommentModel
     {
-        public int id { get; set; }
         public DateTime creationdate { get; set; }
         public string body { get; set; }
         public int score { get; set; }
-        public string title { get; set; }
-        public int acceptedanswerid { get; set; }
-        public int userid { get; set; }
         public string username { get; set; }
-        public int postid { get; set; }
     }
 }

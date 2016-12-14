@@ -1,5 +1,4 @@
-﻿/// <reference path="components/searchhistory/searchhistory.js" />
-
+﻿
 (function () {
     require.config({
         baseUrl: "js",
@@ -21,6 +20,12 @@
                 template: {require: 'text!app/components/app/appview.html'}
             });
 
+        ko.components.register(config.components.post,
+            {
+                viewModel: { require: 'app/components/post/post' },
+                template: { require: 'text!app/components/post/postview.html' }
+            });
+
         ko.components.register(config.components.search,
             {
                 viewModel: { require: 'app/components/search/search' },
@@ -35,8 +40,8 @@
 
         ko.components.register(config.components.mark,
             {
-                viewModel: { require: 'app/components/mark/mark' },
-                template: { require: 'text!app/components/mark/markview.html' }
+                viewModel: { require: 'app/components/mark/marklist' },
+                template: { require: 'text!app/components/mark/marklistview.html' }
             });
 
         ko.components.register(config.components.user,

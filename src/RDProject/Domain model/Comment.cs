@@ -12,6 +12,7 @@ namespace RDProject.Domain_model
         public string body { get; set; }
         public int score { get; set; }
         public int userid { get; set; }
+        public string username { get; set; }
         public int postid { get; set; }
         public int parentid { get; set; }
     }

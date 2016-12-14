@@ -15,7 +15,7 @@
 
 
             <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
-                <li data-bind="css: {active: $parent.isSelected($data)}">
+                <li>
                     <a href="#" data-bind="click: $parent.selectMenu">
                         <span data-bind="text: title"></span>
                     </a>
@@ -25,4 +25,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div data-bind="component: currentComponent"></div>
+
+<div data-bind="if: currentComponent">
+    <div data-bind="component: currentComponent"></div>
+</div>

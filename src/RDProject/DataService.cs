@@ -109,6 +109,96 @@ namespace RDProject
         //    }
         //}
 
+        public FullPost GetPost(int id)
+        {
+            FullPost result = new FullPost();
+            using(var db = new DatabaseContext())
+            {
+                var conn = (MySqlConnection)db.Database.GetDbConnection();
+                conn.Open();
+
+                var cmd = new MySqlCommand("call getfullpost(@1)", conn);
+                cmd.Parameters.Add("@1", DbType.Int32).Value = id;
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    if (!rdr.Read()) return null;
+                    //question
+                    Question question = new Question
+                    {
+                        id = rdr.GetInt32(rdr.GetOrdinal("id")),
+                        acceptedanswerid = rdr.GetInt32(rdr.GetOrdinal("acceptedanswerid")),
+                        body = rdr.GetString(rdr.GetOrdinal("body")),
+                        title = rdr.GetString(rdr.GetOrdinal("title")),
+                        score = rdr.GetInt32(rdr.GetOrdinal("score")),
+                        creationdate = rdr.GetDateTime(rdr.GetOrdinal("creationdate")),
+                        postid = rdr.GetInt32(rdr.GetOrdinal("postid")),
+                        userid = rdr.GetInt32(rdr.GetOrdinal("ownerid")),
+                        username = rdr.GetString(rdr.GetOrdinal("displayname"))
+
+                    };
+               
+
+
+                    //tags
+                    rdr.NextResult();
+                    var tags = new List<string>();
+                    while (rdr.Read())
+                    {
+                        tags.Add(rdr.GetString(rdr.GetOrdinal("tag")));
+                    }
+
+                    //answers
+                    rdr.NextResult();
+                    var answers = new List<Answer>();
+                    while (rdr.Read())
+                    {
+                        answers.Add(new Answer
+                        {
+                            id = rdr.GetInt32(rdr.GetOrdinal("id")),
+                            body = rdr.GetString(rdr.GetOrdinal("body")),
+                            score = rdr.GetInt32(rdr.GetOrdinal("score")),
+                            creationdate = rdr.GetDateTime(rdr.GetOrdinal("creationdate")),
+                            postid = rdr.GetInt32(rdr.GetOrdinal("postid")),
+                            userid = rdr.GetInt32(rdr.GetOrdinal("ownerid")),
+                            parentid = rdr.GetInt32(rdr.GetOrdinal("parentid")),
+                            username = rdr.GetString(rdr.GetOrdinal("displayname"))
+
+                        });
+                    }
+
+                    //comments
+                    rdr.NextResult();
+                    var comments = new List<Comment>();
+                    while (rdr.Read())
+                    {
+                        comments.Add(new Comment
+                        {
+                            id = rdr.GetInt32(rdr.GetOrdinal("id")),
+                            body = rdr.GetString(rdr.GetOrdinal("body")),
+                            score = rdr.GetInt32(rdr.GetOrdinal("score")),
+                            creationdate = rdr.GetDateTime(rdr.GetOrdinal("creationdate")),
+                            postid = rdr.GetInt32(rdr.GetOrdinal("postid")),
+                            userid = rdr.GetInt32(rdr.GetOrdinal("ownerid")),
+                            parentid = rdr.GetInt32(rdr.GetOrdinal("parentid")),
+                            username = rdr.GetString(rdr.GetOrdinal("displayname")),
+
+                        });
+                    }
+
+                    result = new FullPost
+                    {
+                        question = question,
+                        tags = tags,
+                        answers = answers,
+                        comments = comments
+                    };
+                }
+
+                return result;
+            }
+            
+        }
+
         public IList<SearchResult> Search(string search, int userid, int page, int pagesize)
         {
             List<SearchResult> result = new List<SearchResult>();

@@ -27,7 +27,13 @@
             }
         });
 
-        selectMenu(menuItems[0]);
+        postman.subscribe(config.events.showPost, function (url) {
+            selectMenu({})
+            currentComponent(config.components.post)
+        });
+        
+        //selectMenu(menuItems[0]);
+        selectMenu({});
 
         return {
             menuItems,

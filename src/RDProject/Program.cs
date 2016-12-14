@@ -12,12 +12,11 @@ namespace RDProject
         public static void Main(string[] args)
         {
             DataService ds = new DataService();
-            var user = ds.GetUser(1);
-            var comments = ds.GetCommentsToPost(3);
-            foreach (var item in comments)
+            foreach (var item in ds.GetPost(13).comments)
             {
-                Console.WriteLine($"{item.parentid} " );
+                Console.WriteLine($"{item.creationdate},{item.score}");
             }
+            
             //var answers = ds.GetAnswersToQuestion(19);
             //var searchhistory = ds.GetSearchHistory(1, 1, 10);           
             //Console.WriteLine(ds.Mark(1, 19, "useful mark"));

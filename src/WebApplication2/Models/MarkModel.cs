@@ -7,7 +7,7 @@ namespace WebApplication2.Models
 {
     public class MarkModel
     {
-        public string url { get; set; }
+        public string posturl { get; set; }
         public string mark { get; set; }
         public string title { get; set; }
     }

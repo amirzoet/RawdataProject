@@ -2,7 +2,8 @@
     return {
         events: {
             showUser: "ShowUser",
-            changeMenu: "ChangeMenu"
+            changeMenu: "ChangeMenu",
+            showPost: "ShowPost"
         },
         menuItems: {
             search: "Search",
@@ -14,7 +15,8 @@
             search: "search",
             searchHistory: "search history",
             user: "user",
-            mark: "mark"
+            mark: "mark",
+            post: "post"
         }
     };
 });

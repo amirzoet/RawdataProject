@@ -1,0 +1,10 @@
+﻿<ul class="list-group" data-bind="foreach: marks">
+    <li class="list-group-item list-group-item-action">
+        <a href="#" class="list-group-item-heading" data-bind="text: title, click: $parent.selectPost"></a>
+        <p class="list-group-item-text" data-bind="text: mark"></p>
+        <a href="#" class="bottomright" data-bind="click: $parent.selectMark">edit</a>
+    </li>
+</ul>
+
+
+<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>

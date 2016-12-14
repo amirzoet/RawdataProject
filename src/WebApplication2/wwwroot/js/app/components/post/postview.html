@@ -1,1 +1,30 @@
-﻿
+﻿<div data-bind="with: post">
+    <h4 class="list-group-item-heading" data-bind="text: questionmodel.title"></h4>
+    <div class="list-group-item">
+        <p data-bind="text: questionmodel.body"></p>
+        <a href="#" class="bottomright" data-bind="text: questionmodel.username"></a>
+    </div>
+    <ul class="list-group-item" data-bind="foreach: questionmodel.comments">
+        <li class="list-group-item">
+            <p data-bind="text: body"></p>
+            <a href="#" class="bottomright" data-bind="text: username"></a>
+        </li>
+    </ul>
+
+
+    <ul class="list-group" data-bind="foreach: answermodels">
+        <li class="list-group-item">
+            <p data-bind="text:body"></p>
+            <a href="#" class="bottomright" data-bind="text: username"></a>
+        </li>
+        <ul class="list-group-item" data-bind="foreach: comments">
+            <li class="list-group-item">
+                <p data-bind="text: body"></p>
+                <a href="#" class="bottomright" data-bind="text: username"></a>
+            </li>
+        </ul>
+    </ul>
+
+</div>
+
+<!--<pre data-bind="text: ko.toJSON($data)"></pre>-->

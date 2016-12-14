@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RDProject;
-using WebApplication2;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -14,12 +14,24 @@ namespace WebApplication2.Controllers
         public MarkController(IDataService dataService) : base(dataService)
         {
         }
-        [HttpGet("{page}")]
+
+        [HttpGet("{page}", Name = Config.MarkRoute)]
         public IActionResult Get(int userid, int page)
         {
-            var marks = DataService.GetMarks(userid, page, Config.DefaultPageSize);
+            var marks = DataService.GetMarks(userid, page, Config.DefaultPageSize).ToList();
             if (marks == null) return NotFound();
-            return Ok(marks);
+            List<MarkModel> markmodels = new List<MarkModel>();
+            foreach (var mark in marks)
+            {
+                markmodels.Add(ModelFactory.Map(mark, Url));
+            }
+            var result = new
+            {
+                url = Url.Link(Config.MarkRoute, new { userid, page }),
+                data = markmodels
+            };
+
+            return Ok(markmodels);
         }
 
         [HttpDelete("{postid}")]

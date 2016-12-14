@@ -16,5 +16,6 @@ namespace RDProject
         IList<Mark> GetMarks(int userid, int page, int pagesize);
         Boolean Mark(int userid, int postid, string text);
         Boolean DeleteMark(int userid, int postid);
+        FullPost GetPost(int id);
     }
 }
