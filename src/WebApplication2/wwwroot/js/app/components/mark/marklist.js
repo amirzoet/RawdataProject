@@ -4,7 +4,7 @@
             var marks = ko.observableArray([]);
 
             var getMarks = function (url) {
-                ds.getMarks(url, function (data) {
+                ds.getUrl(url, function (data) {
                     marks(data);
                 });
             }
@@ -15,7 +15,7 @@
             }
 
             var selectPost = function (mark) {
-                postman.publish(config.events.showPost, mark.url);
+                postman.publish(config.events.showPost, mark.posturl);
             }
 
             return {

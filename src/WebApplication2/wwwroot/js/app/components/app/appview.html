@@ -27,5 +27,5 @@
 
 
 <div data-bind="if: currentComponent">
-    <div data-bind="component: currentComponent"></div>
+    <div data-bind="component: {name: currentComponent, params: currentParams}"></div>
 </div>

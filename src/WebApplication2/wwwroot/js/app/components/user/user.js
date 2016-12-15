@@ -4,7 +4,7 @@
             var user = ko.observable();
 
             var getUser = function (url) {
-                ds.getUser(url, function (data) {
+                ds.getUrl(url, function (data) {
                     user(data);
                 });
             }

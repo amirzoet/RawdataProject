@@ -1,1 +1,8 @@
-﻿<div>Searchhistoryinfo</div>
+﻿<ul class="list-group" data-bind="foreach: searchhistory">
+    <li class="list-group-item list-group-item-action">
+        <p class="list-group-item-text" data-bind="text: text"></p>
+        <p href="#" class="bottomright" data-bind="text: timestamp"></p>
+    </li>
+</ul>
+
+<!--<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->

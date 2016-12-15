@@ -126,7 +126,8 @@ namespace RDProject
                     Question question = new Question
                     {
                         id = rdr.GetInt32(rdr.GetOrdinal("id")),
-                        acceptedanswerid = rdr.GetInt32(rdr.GetOrdinal("acceptedanswerid")),
+                        acceptedanswerid = rdr.IsDBNull(rdr.GetOrdinal("acceptedanswerid"))? 
+                        -1 : rdr.GetInt32(rdr.GetOrdinal("acceptedanswerid")),
                         body = rdr.GetString(rdr.GetOrdinal("body")),
                         title = rdr.GetString(rdr.GetOrdinal("title")),
                         score = rdr.GetInt32(rdr.GetOrdinal("score")),
@@ -214,6 +215,7 @@ namespace RDProject
 
                 foreach (int id in questionids)
                 {
+                    Console.WriteLine(id);
                     //var info = db.Set<SearchResult>().FromSql(
                     //"call getquestioninfo({0})",
                     //new object[] { id }).ToList();

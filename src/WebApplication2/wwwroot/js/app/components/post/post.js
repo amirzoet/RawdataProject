@@ -1,14 +1,16 @@
 ﻿define(['knockout', 'dataservice', 'postman'],
     function (ko, ds, pm) {
-        return function () {
+        return function (params) {
             var post = ko.observable();
 
             var getPost = function (url) {
-                ds.getPost(url, function (data) {
+                ds.getUrl(url, function (data) {
                     post(data);
                 });
             };
-            getPost("api/posts/13");
+            if (params && params.url) {
+                getPost(params.url);
+            }
 
             return {
                 post: post,

@@ -69,6 +69,15 @@ namespace WebApplication2.Models
             return result;
         }
 
+        public static SearchModel Map(Search search)
+        {
+            return new SearchModel
+            {
+                text = search.text,
+                timestamp = search.timestamp
+            };
+        }
+
         public static FullPostModel Map(FullPost post, IUrlHelper URL)
         {
             FullPostModel fpm = new FullPostModel();

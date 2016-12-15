@@ -7,7 +7,9 @@
         ];
 
         var currentComponent = ko.observable();
+        var currentParams = ko.observable({});
         var selectedMenu = ko.observable();
+       
 
         var selectMenu = function (menu) {
             selectedMenu(menu);
@@ -27,17 +29,18 @@
             }
         });
 
-        postman.subscribe(config.events.showPost, function (url) {
-            selectMenu({})
-            currentComponent(config.components.post)
+        postman.subscribe(config.events.showPost, function (posturl) {
+            selectMenu({});
+            currentParams({ url: posturl });
+            currentComponent(config.components.post);
         });
         
-        //selectMenu(menuItems[0]);
         selectMenu({});
 
         return {
             menuItems,
             currentComponent,
+            currentParams,
             selectMenu,
             isSelected
         }

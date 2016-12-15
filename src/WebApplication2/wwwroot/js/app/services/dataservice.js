@@ -1,24 +1,11 @@
 ﻿define(['jquery'], function ($) {
-    var getUser = function (url,callback) {
-        $.getJSON(url, function (data) {
-            callback(data);
-        });
-    }
-
-    var getMarks = function (url, callback) {
-        $.getJSON(url, function (data) {
-            callback(data);
-        })
-    }
-
-    var getPost = function (url, callback) {
+    var getUrl = function (url, callback) {
         $.getJSON(url, function (data) {
             callback(data)
         })
     }
+
     return {
-        getUser,
-        getMarks,
-        getPost
+        getUrl
     };
 });

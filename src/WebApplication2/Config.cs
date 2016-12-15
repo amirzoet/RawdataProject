@@ -11,5 +11,6 @@ namespace WebApplication2
         public const string UserRoute = "UserRoute";
         public const string MarkRoute = "MarkRoute";
         public const string PostRoute = "PostRoute";
+        public const string SearchHistoryRoute = "SearchHistoryRoute";
     }
 }
