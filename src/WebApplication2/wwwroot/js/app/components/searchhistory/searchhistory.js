@@ -9,7 +9,7 @@
                     searchhistory(data);
                 });
             }
-            getSearchHistory("api/myusers/1/searchhistory/1");
+            getSearchHistory("api/myusers/1/searchhistory");
 
             return {
                 searchhistory: searchhistory

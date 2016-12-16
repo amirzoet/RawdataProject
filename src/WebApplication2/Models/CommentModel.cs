@@ -12,5 +12,6 @@ namespace WebApplication2.Models
         public string body { get; set; }
         public int score { get; set; }
         public string username { get; set; }
+        public string userurl { get; set; }
     }
 }

@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebApplication2.Models
 {
-    public class AnswerModel
+    public class SearchResultModel
     {
-        public DateTime creationdate { get; set; }
-        public string body { get; set; }
         public int score { get; set; }
+        public string title { get; set; }
+        public List<string> tags { get; set; }
         public string username { get; set; }
-        public string userurl { get; set; }
-        public List<CommentModel> comments { get; set; }
     }
 }

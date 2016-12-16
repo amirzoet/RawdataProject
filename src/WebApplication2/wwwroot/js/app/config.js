@@ -3,7 +3,8 @@
         events: {
             showUser: "ShowUser",
             changeMenu: "ChangeMenu",
-            showPost: "ShowPost"
+            showPost: "ShowPost",
+            search: "Search"
         },
         menuItems: {
             search: "Search",
@@ -13,6 +14,7 @@
         components: {
             app: "app",
             search: "search",
+            searchbar: "searchbar",
             searchHistory: "search history",
             user: "user",
             mark: "mark",

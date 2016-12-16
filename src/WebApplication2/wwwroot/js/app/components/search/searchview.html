@@ -1,1 +1,18 @@
-﻿<input /><button>search</button>
+﻿<input data-bind="textInput: searchinput" />
+<button data-bind="click: function() {$data.search(searchinput())}">search</button>
+
+
+<div data-bind="if: searchresults">
+    <ul class="list-group" data-bind="foreach: searchresults">
+        <li class="list-group-item list-group-item-action">
+            <a href="#" class="list-group-item-heading" data-bind="text: title"></a>
+            <a class="list-group-item-text bottomright" data-bind="text: username"></a>
+            <div data-bind="foreach: tags">
+                tags: <span data-bind="text: $data"></span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<!--<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>-->

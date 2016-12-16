@@ -34,6 +34,18 @@
             currentParams({ url: posturl });
             currentComponent(config.components.post);
         });
+
+        postman.subscribe(config.events.showUser, function (userurl) {
+            selectMenu({});
+            currentParams({ url: userurl });
+            currentComponent(config.components.user);
+        });
+
+        postman.subscribe(config.events.search, function (text) {
+            currentParams({ text: text });
+            currentComponent(config.components.search);
+           
+        });
         
         selectMenu({});
 

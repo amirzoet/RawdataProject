@@ -12,9 +12,25 @@ namespace RDProject
         public static void Main(string[] args)
         {
             DataService ds = new DataService();
-            var search = ds.Search("java banana hashmap",1,1,10);
-
-            var sh = ds.GetSearchHistory(1,1,100);
+            //var post = ds.GetPost(13);
+            //Console.WriteLine( post.question.id);
+            //foreach (var item in post.answers)
+            //{
+            //    Console.WriteLine(item.id);
+            //}
+            
+            
+            var search = ds.Search("shoot me please",1,1,10);
+            foreach (var item in search)
+            {
+                string tags = "";
+                foreach (string thing in item.tags)
+                {
+                    tags += " " + thing;
+                }
+                Console.WriteLine($"{item.id}, {item.score}, {item.username}, {tags}, {item.title}");
+            }
+            //var sh = ds.GetSearchHistory(1,1,100);
 
             //var answers = ds.GetAnswersToQuestion(19);
             //var searchhistory = ds.GetSearchHistory(1, 1, 10);           
@@ -27,20 +43,12 @@ namespace RDProject
             //}
             //Console.WriteLine("id, score, username, tags, title");
 
-            foreach (var item in sh)
-            {
-                Console.WriteLine($"{item.text},{item.timestamp}");
-            }
+            //foreach (var item in sh)
+            //{
+            //    Console.WriteLine($"{item.text},{item.timestamp}");
+            //}
 
-            foreach (var item in search)
-            {
-                string tags = "";
-                foreach (string thing in item.tags)
-                {
-                    tags += " " + thing;
-                }
-                Console.WriteLine($"{item.id}, {item.score}, {item.username}, {tags}, {item.title}");
-            }
+
         }
     }
 }

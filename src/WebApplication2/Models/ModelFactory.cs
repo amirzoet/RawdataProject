@@ -53,7 +53,33 @@ namespace WebApplication2.Models
                 };
         }
 
-        public static List<CommentModel> Map(List<Comment> comments)
+        public static List<SearchResultModel> Map(List<SearchResult> searchresults)
+        {
+            List<SearchResultModel> srms = new List<SearchResultModel>();
+            foreach (var sr in searchresults)
+            {
+                srms.Add(new SearchResultModel
+                {
+                    score = sr.score,
+                    tags = sr.tags,
+                    title = sr.title,
+                    username = sr.username
+                });
+            }
+            return srms; 
+        }
+
+        public static SearchHistoryModel Map(Search search)
+        {
+            return new SearchHistoryModel
+            {
+                text = search.text,
+                timestamp = search.timestamp
+            };
+        }
+
+
+        public static List<CommentModel> Map(List<Comment> comments, IUrlHelper URL)
         {
             List<CommentModel> result = new List<CommentModel>();
             foreach (var comment in comments)
@@ -63,19 +89,11 @@ namespace WebApplication2.Models
                     body = comment.body,
                     creationdate = comment.creationdate,
                     score = comment.score,
-                    username = comment.username
+                    username = comment.username,
+                    userurl = URL.Link(Config.UserRoute, new { id = comment.userid })
                 });
             }
             return result;
-        }
-
-        public static SearchModel Map(Search search)
-        {
-            return new SearchModel
-            {
-                text = search.text,
-                timestamp = search.timestamp
-            };
         }
 
         public static FullPostModel Map(FullPost post, IUrlHelper URL)
@@ -84,26 +102,26 @@ namespace WebApplication2.Models
 
             QuestionModel qm = new QuestionModel
             {
-                comments = Map(post.comments.Where(c => c.parentid == post.question.postid).ToList()),
+                comments = Map(post.comments.Where(c => c.parentid == post.question.postid).ToList(),URL),
                 body = post.question.body,
                 creationdate = post.question.creationdate,
                 score = post.question.score,
                 title = post.question.title,
-                username = post.question.username
-              
+                username = post.question.username,
+                userurl = URL.Link(Config.UserRoute, new { id = post.question.userid })           
             };
-
             List<AnswerModel> ams = new List<AnswerModel>();
             foreach (var answer in post.answers)
             {
                 Console.WriteLine(answer.id);
                 ams.Add(new AnswerModel
                 {
-                    comments = Map(post.comments.Where(c => c.parentid == answer.postid).ToList()),
+                    comments = Map(post.comments.Where(c => c.parentid == answer.postid).ToList(),URL),
                     body = answer.body,
                     creationdate = answer.creationdate,
                     score = answer.score,
-                    username = answer.username
+                    username = answer.username,
+                    userurl = URL.Link(Config.UserRoute, new { id = answer.userid })
                 });
             }
 

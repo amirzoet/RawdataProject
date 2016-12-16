@@ -16,12 +16,12 @@ namespace WebApplication2.Controllers
         {
         }
 
-        [Route("{page}", Name = Config.SearchHistoryRoute)]
-        public IActionResult Get(int userid, int page)
+        [Route("", Name = Config.SearchHistoryRoute)]
+        public IActionResult Get(int userid, int page=1)
         {
             var searchhistory = DataService.GetSearchHistory(userid, page, Config.DefaultPageSize).ToList();
             if (searchhistory == null) return NotFound();
-            List<SearchModel> searchmodels = new List<SearchModel>();
+            List<SearchHistoryModel> searchmodels = new List<SearchHistoryModel>();
             foreach (var search in searchhistory)
             {
                 searchmodels.Add(ModelFactory.Map(search));

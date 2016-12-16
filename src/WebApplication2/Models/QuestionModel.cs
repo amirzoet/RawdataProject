@@ -13,6 +13,7 @@ namespace WebApplication2.Models
         public int score { get; set; }
         public string title { get; set; }
         public string username { get; set; }
+        public string userurl { get; set; }
         public List<CommentModel> comments { get; set; }
     }
 }

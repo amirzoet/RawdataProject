@@ -12,26 +12,6 @@ namespace RDProject
 {
     public class DataService : IDataService
     {
-        public IList<Answer> GetAnswersToQuestion(int questionid)
-        {
-            using (var db = new DatabaseContext())
-            {
-                return db.Set<Answer>().FromSql(
-                        "call getanswersforquestion({0})",
-                        new object[] { questionid }).ToList();
-            }
-        }
-
-        public IList<Comment> GetCommentsToPost(int postid)
-        {
-            using (var db = new DatabaseContext())
-            {
-                return db.Set<Comment>().FromSql(
-                        "call getcommentsforpost({0})",
-                        new object[] { postid }).ToList();
-            }
-        }
-
         public Boolean Mark(int userid, int postid, string text)
         {
             using(var db = new DatabaseContext())
@@ -163,7 +143,6 @@ namespace RDProject
                             userid = rdr.GetInt32(rdr.GetOrdinal("ownerid")),
                             parentid = rdr.GetInt32(rdr.GetOrdinal("parentid")),
                             username = rdr.GetString(rdr.GetOrdinal("displayname"))
-
                         });
                     }
 
@@ -215,10 +194,6 @@ namespace RDProject
 
                 foreach (int id in questionids)
                 {
-                    Console.WriteLine(id);
-                    //var info = db.Set<SearchResult>().FromSql(
-                    //"call getquestioninfo({0})",
-                    //new object[] { id }).ToList();
                     var cmd = new MySqlCommand("call getquestioninfo(@1)", conn);
                     cmd.Parameters.Add("@1", DbType.Int32).Value = id;
                     using (var rdr = cmd.ExecuteReader())

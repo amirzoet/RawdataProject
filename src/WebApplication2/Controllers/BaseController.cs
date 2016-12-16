@@ -15,6 +15,12 @@ namespace WebApplication2.Controllers
         {
             DataService = dataService;
         }
-    
+        
+
+        //protected string getNextUrl(IUrlHelper URL, string route , int page, int pagesize)
+        //{
+        //    return URL.Link(route, new { page = page +1 });
+        //}
+        
     }
 }

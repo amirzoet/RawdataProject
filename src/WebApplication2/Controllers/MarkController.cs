@@ -15,8 +15,10 @@ namespace WebApplication2.Controllers
         {
         }
 
-        [HttpGet("{page}", Name = Config.MarkRoute)]
-        public IActionResult Get(int userid, int page)
+        [HttpGet("", Name = Config.MarkRoute)]
+        public IActionResult Get(int userid, int page=1)
+
+
         {
             var marks = DataService.GetMarks(userid, page, Config.DefaultPageSize).ToList();
             if (marks == null) return NotFound();

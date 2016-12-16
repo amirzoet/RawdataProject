@@ -1,6 +1,6 @@
-﻿define(['knockout', 'dataservice', 'postman'],
-    function (ko, ds, postman) {
-        return function () {
+﻿define(['knockout', 'dataservice', 'postman', 'config'],
+    function (ko, ds, postman, config) {
+        return function (params) {
             var user = ko.observable();
 
             var getUser = function (url) {
@@ -8,12 +8,7 @@
                     user(data);
                 });
             }
-            getUser("api/users/1");
-
-            postman.subscribe("showuser", function (url) {
-                getUser(url);
-            });
-
+            getUser(params.url);
 
 
             return {

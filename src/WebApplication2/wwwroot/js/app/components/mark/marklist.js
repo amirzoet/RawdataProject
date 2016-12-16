@@ -8,9 +8,9 @@
                     marks(data);
                 });
             }
-            getMarks("api/myusers/1/marks/1");
+            getMarks("api/myusers/1/marks");
 
-            var selectMark = function () {
+            var editMark = function () {
 
             }
 
@@ -20,7 +20,7 @@
 
             return {
                 marks: marks,
-                selectMark: selectMark,
+                editMark: editMark,
                 selectPost: selectPost
             };
         }

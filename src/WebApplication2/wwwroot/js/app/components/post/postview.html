@@ -3,13 +3,15 @@
     <div class="list-group-item">
         <p data-bind="text: questionmodel.body"></p>
         <p class="bottomright" data-bind="text: questionmodel.creationdate"></p>
-        <a href="#" class="bottomright" data-bind="text: questionmodel.username"></a>
+        <a href="#" class="bottomright" 
+           data-bind= "text: questionmodel.username, click: function() {$component.selectUser($data.questionmodel.userurl)}">
+        </a>
     </div>
     <ul class="list-group-item" data-bind="foreach: questionmodel.comments">
         <li class="list-group-item">
             <p data-bind="text: body"></p>
             <p class="bottomright" data-bind="text: creationdate"></p>
-            <a href="#" class="bottomright" data-bind="text: username"></a>
+            <a href="#" class="bottomright" data-bind="text: username, click: function() {$component.selectUser($data.userurl)}"></a>
         </li>
     </ul>
 
@@ -18,13 +20,13 @@
         <li class="list-group-item">
             <p data-bind="text:body"></p>
             <p class="bottomright" data-bind="text: creationdate"></p>
-            <a href="#" class="bottomright" data-bind="text: username"></a>
+            <a href="#" class="bottomright" data-bind="text: username, click: function(){$component.selectUser($data.userurl)}"></a>
         </li>
         <ul class="list-group-item" data-bind="foreach: comments">
             <li class="list-group-item">
                 <p data-bind="text: body"></p>
                 <p class="bottomright" data-bind="text: creationdate"></p>
-                <a href="#" class="bottomright" data-bind="text: username"></a>
+                <a href="#" class="bottomright" data-bind="text: username, click: function(){$component.selectUser($data.userurl)}"></a>
             </li>
         </ul>
     </ul>
